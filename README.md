@@ -1,6 +1,6 @@
 # pShape
 
-A lightweight JavaScript library for creating and animating customizable polygonal shapes on an HTML canvas. 
+A lightweight JavaScript library for creating psuedo 3D polygonal shapes within an HTML canvas. 
 
 ![Looping GIF](https://raw.githubusercontent.com/blkbzt/pShapes/8ff5ab12369617f9acd5e213a19f9c2c0f630ca7/example.gif) 
 ![Looping GIF](https://raw.githubusercontent.com/blkbzt/pShapes/fe9ed34ddcb5c6f5dcf35bdc07c292f12815cd00/example2.gif)
