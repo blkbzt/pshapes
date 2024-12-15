@@ -28,7 +28,7 @@ new pShape(('myCanvas', {
 | **thickness**      | number   | The thickness of the shape’s extrusion.                                                        | `14`                  |
 | **speed_x**        | number   | Horizontal movement speed.                                                                     | `2.00`                |
 | **speed_y**        | number   | Vertical movement speed.                                                                       | `0.75`                |
-| **number_of_sides**| number   | Number of sides for the polygon (min: `2`, max: `100`).                                        | `6`                   |
+| **number_of_sides**| number   | Number of sides for the polygon (`2 ≤ x ≤ 100`).                                        | `6`                   |
 | **top_fill**       | string   | Fill color or image for the top face.                                                          | `'red'`               |
 | **bottom_fill**    | string   | Fill color or image for the bottom face.                                                       | `'blue'`              |
 | **side_fills**     | array    | An array of fill colors or image URLs for each side.                                           | `['yellow']`          |
