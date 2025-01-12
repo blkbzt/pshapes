@@ -27,14 +27,14 @@ new pShape(('myCanvas', {
 | Option             | Type     | Description                                                                                   | Default               |
 |--------------------|----------|-----------------------------------------------------------------------------------------------|-----------------------|
 | **canvas_id**      | string   | The ID of the `<canvas>` element (required).                                                  | -                     |
-| **radius**         | number   | The radius of the polygon.                                                                     | `60`                  |
-| **thickness**      | number   | The thickness of the shape’s extrusion.                                                        | `14`                  |
-| **speed_x**        | number   | Horizontal movement speed.                                                                     | `2.00`                |
-| **speed_y**        | number   | Vertical movement speed.                                                                       | `0.75`                |
-| **number_of_sides**| number   | Number of sides for the polygon (`2 ≤ x ≤ 100`).                                        | `6`                   |
-| **top_fill**       | string   | Fill color or image for the top face.                                                          | `'red'`               |
-| **bottom_fill**    | string   | Fill color or image for the bottom face.                                                       | `'blue'`              |
-| **side_fills**     | array    | An array of fill colors or image URLs for each side.                                           | `['yellow']`          |
-| **image_smoothing**| boolean  | Enable or disable image smoothing.                                                             | `true`                |
-| **smoothing_quality** | string | Quality of image smoothing (`'high'`, `'low'`).                                                | `'high'`              |
-| **camera_direction**| object  | Direction of the camera with `x`, `y`, `z` values.                                             | `{x: 0, y: 0, z: -1}` |
+| **radius**         | number   | The radius of the polygon.                                                                    | `60`                  |
+| **thickness**      | number   | The thickness of the shape’s extrusion.                                                       | `14`                  |
+| **speed_x**        | number   | Horizontal movement speed.                                                                    | `2.00`                |
+| **speed_y**        | number   | Vertical movement speed.                                                                      | `0.75`                |
+| **number_of_sides**| number   | Number of sides for the polygon (`2 ≤ x ≤ 100`).                                              | `6`                   |
+| **top_fill**       | string   | Fill color or image for the top face.                                                         | `'red'` `'top.png'` |
+| **bottom_fill**    | string   | Fill color or image for the bottom face.                                                      | `'blue'` `'bot.png'`|
+| **side_fills**     | array    | An array of fill colors or image URLs for each side.                                          | `['yellow']`          |
+| **image_smoothing**| boolean  | Enable or disable image smoothing.                                                            | `true`                |
+| **smoothing_quality** | string | Quality of image smoothing (`'high'`, `'low'`).                                              | `'high'`              |
+| **camera_direction**| object  | Direction of the camera with `x`, `y`, `z` values.                                            | `{x: 0, y: 0, z: -1}` |
