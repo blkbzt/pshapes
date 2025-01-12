@@ -32,8 +32,8 @@ new pShape(('myCanvas', {
 | **speed_x**        | number   | Horizontal movement speed.                                                                    | `2.00`                |
 | **speed_y**        | number   | Vertical movement speed.                                                                      | `0.75`                |
 | **number_of_sides**| number   | Number of sides for the polygon (`2 ≤ x ≤ 100`).                                              | `6`                   |
-| **top_fill**       | string   | Fill color or image for the top face.                                                         | `'red'` `'top.png'` |
-| **bottom_fill**    | string   | Fill color or image for the bottom face.                                                      | `'blue'` `'bot.png'`|
+| **top_fill**       | string   | Fill color or image URL for the top face.                                                     | `'red'` `'top.png'` |
+| **bottom_fill**    | string   | Fill color or image URL for the bottom face.                                                  | `'blue'` `'bot.png'`|
 | **side_fills**     | array    | An array of fill colors or image URLs for each side.                                          | `['yellow']`          |
 | **image_smoothing**| boolean  | Enable or disable image smoothing.                                                            | `true`                |
 | **smoothing_quality** | string | Quality of image smoothing (`'high'`, `'low'`).                                              | `'high'`              |
