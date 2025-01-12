@@ -2,7 +2,8 @@
 
 A lightweight JavaScript library for creating psuedo 3D polygonal shapes within an HTML canvas. 
 
-![Looping GIF](https://raw.githubusercontent.com/blkbzt/pShapes/23ddbfc2677dc2feaf7bdf82e0b0c626775a936f/example.gif) 
+![Looping GIF](https://raw.githubusercontent.com/blkbzt/pShapes/41a5e0dad09a2dd8a4c4ecb0de6995f06fa7a2f2/example-1.gif)
+![Looping GIF](https://raw.githubusercontent.com/blkbzt/pShapes/b289b5c4199a8e9e601103a3eb3c04485bfa85e4/example-2.gif) 
 
 ## Usage
 
