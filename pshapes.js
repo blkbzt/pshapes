@@ -1,14 +1,20 @@
 class pShape {
+
+    static DEFAULT_TOP_FILL = 'red';
+    static DEFAULT_BOTTOM_FILL = 'blue';
+    static DEFAULT_SIDE_FILLS = ['green'];
+    static FILETYPES = ['.png', '.jpg', '.jpeg', '.svg', '.webp'];
+
     constructor(canvas_id, options = {}) {
         const {
-            radius = 60,
-            thickness = 14,
+            radius = 240,
+            thickness = 60,
             speed_x = 2.00,
-            speed_y = 0.75,
-            number_of_sides = 6,
-            top_fill = 'red',
-            bottom_fill = 'blue',
-            side_fills = ['yellow'],
+            speed_y = 0.25,
+            number_of_sides = 14,
+            top_fill = pShape.DEFAULT_TOP_FILL,
+            bottom_fill = pShape.DEFAULT_BOTTOM_FILL,
+            side_fills = pShape.DEFAULT_SIDE_FILLS,
             image_smoothing = true,
             smoothing_quality = 'high',
             camera_direction = { x: 0, y: 0, z: -1 }
@@ -25,8 +31,14 @@ class pShape {
         this.speed_x = speed_x;
         this.speed_y = speed_y;
         this.number_of_sides = Math.round(Math.min(100, Math.max(2, number_of_sides)));
-        this.top_fill = top_fill;
-        this.bottom_fill = bottom_fill;
+
+        this.top_fill = (this.check_fill_type(top_fill) === 'color') ? pShape.DEFAULT_TOP_FILL : top_fill;
+        this.bottom_fill = (this.check_fill_type(bottom_fill) === 'color') ? pShape.DEFAULT_BOTTOM_FILL : bottom_fill;
+        this.side_fills = this.check_side_fills(side_fills);
+
+        this.top_face_texture = this.load_image(this.top_fill);
+        this.bottom_face_texture = this.load_image(this.bottom_fill);
+
         this.camera_direction = camera_direction;
 
         this.resize();
@@ -39,40 +51,45 @@ class pShape {
         this.top_face_points = new Array(this.number_of_sides);
         this.bottom_face_points = new Array(this.number_of_sides);
 
-        if (side_fills.length === 1 && typeof side_fills[0] === 'string' && side_fills[0].endsWith('.png')) {
-            const imageSrc = side_fills[0];
-            this.side_fills = this.split_image(imageSrc, number_of_sides);
-        } else {
-            if (side_fills.length < number_of_sides) {
-                if (side_fills.length > 0) {side_fills.push(...new Array(number_of_sides - side_fills.length).fill(side_fills[0]))}
-                else {side_fills.push(...new Array(number_of_sides - side_fills.length).fill('red'))}
-            }
-            this.side_fills = side_fills.map(fill => {
-                if (typeof fill === 'string' && fill.endsWith('.png')) {
-                    const img = new Image();
-                    img.src = fill;
-                    return img;
-                }
-                return fill;
-            });
-        }
-
-        this.top_face_texture = new Image();
-        if (typeof this.top_fill === 'string' && this.top_fill.endsWith('.png')) {this.top_face_texture.src = this.top_fill}
-        else {this.top_face_texture = null}
-
-        this.bottom_face_texture = new Image();
-        if (typeof this.bottom_fill === 'string' && this.bottom_fill.endsWith('.png')) {this.bottom_face_texture.src = this.bottom_fill}
-        else {this.bottom_face_texture = null}
-
         this.animate();
     }
 
-    split_image(imageSrc, numSides) {
+    check_fill_type(fill) {
+        if (!fill || fill.trim() === '') {return 'color'}
+        if (typeof fill === 'string') {for (let type of pShape.FILETYPES) {if (fill.endsWith(type)) {return 'image'}}}
+        return 'color';
+    }
+
+    load_image(src) {
+        const fillType = this.check_fill_type(src);
+        if (fillType === 'image') {
+            const img = new Image();
+            img.src = src;
+            return img;
+        }
+        return null;
+    }
+
+    check_side_fills(side_fills) {
+        if (!side_fills || side_fills.length === 0) {side_fills = new Array(this.number_of_sides).fill(pShape.DEFAULT_SIDE_FILLS[0])}
+        if (side_fills.length === 1 && this.check_fill_type(side_fills[0]) === 'image') {
+            const image_source = side_fills[0];
+            return this.split_image(image_source, this.number_of_sides);
+        } else {
+            if (side_fills.length < this.number_of_sides) {
+
+                if (side_fills.length > 0) {side_fills.push(...new Array(this.number_of_sides - side_fills.length).fill(side_fills[0]))}
+                else {side_fills.push(...new Array(this.number_of_sides - side_fills.length).fill(pShape.DEFAULT_SIDE_FILLS[0]))}
+            }
+            return side_fills.map(fill => this.load_image(fill) || fill);
+        }
+    }
+
+    split_image(image_source, numSides) {
         const img = new Image();
-        img.src = imageSrc;
+        img.src = image_source;
+
         const sideFills = [];
-        
         img.onload = () => {
             const sliceWidth = img.width / numSides;
 
@@ -99,8 +116,12 @@ class pShape {
     }
 
     resize() {
-        this.canvas.width = window.innerWidth;
-        this.canvas.height = window.innerHeight;
+        const fixed_width = 800;
+        const fixed_height = 600;
+        
+        this.canvas.width = fixed_width;
+        this.canvas.height = fixed_height;
+    
         this.center_x = this.canvas.width / 2;
         this.center_y = this.canvas.height / 2;
         this.aspect_ratio = this.canvas.width / this.canvas.height;
@@ -317,10 +338,5 @@ class pShape {
         }
     }
 }
-
-window.addEventListener('resize', function () {
-    const renderer = new pShape('canvas');
-    renderer.resize();
-});
 
 function create_shape(canvas_id, options) { return new pShape(canvas_id, options)}
