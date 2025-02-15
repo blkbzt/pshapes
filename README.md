@@ -2,8 +2,8 @@
 
 A lightweight JavaScript library for creating psuedo 3D polygonal shapes within a 2D HTML canvas.
 
-![reg](https://img.shields.io/badge/Regular-14KB-brightgreen)
-![min](https://img.shields.io/badge/Minified-7KB-brightgreen)
+![reg](https://img.shields.io/badge/Regular-14.76kb-brightgreen)
+![min](https://img.shields.io/badge/Minified-7.39kb-brightgreen)
 
 ## Usage
 
