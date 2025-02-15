@@ -118,7 +118,7 @@ class pShape {
             }
             const promises = [];
             for (let i = 0; i < this.num_sides; i++) {
-                const fill = side_fill_list[i] || pShape.DEFAULT_SIDE_FILLS[0];
+                const fill = side_fill_list[i % side_fill_list.length] || pShape.DEFAULT_SIDE_FILLS[0];
                 if (this.check_fill_type(fill) === 'color') {promises.push(Promise.resolve(fill))}
                 else {promises.push(this.load_image_resource(fill))}
             }
@@ -132,7 +132,7 @@ class pShape {
             }
             return Promise.all(promises);
         }
-    }    
+    }   
 
     split_image(image_source, num_sides) {
         return new Promise((resolve, reject) => {
